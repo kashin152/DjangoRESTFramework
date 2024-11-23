@@ -15,7 +15,7 @@ class LessonSerializer(ModelSerializer):
         fields = "__all__"
 
 
-class LessonCountSerializer(ModelSerializer):
+class CourseCountSerializer(ModelSerializer):
     lesson_count = SerializerMethodField()
     lessons = LessonSerializer(many=True, read_only=True)
 

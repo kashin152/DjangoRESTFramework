@@ -23,10 +23,10 @@ class CustomsUser(AbstractUser):
         return self.email
 
 
-class Payments(models.Model):
+class Payment(models.Model):
     PAYMENT_METHOD_CHOICES = [("наличные", "наличные"), ("перевод на счет", "перевод на счет")]
 
-    user = models.ForeignKey(CustomsUser, verbose_name="Пользователь", blank=True, null=True,
+    user = models.ForeignKey(CustomsUser, verbose_name="Пользователь",
                              related_name='payment_history', on_delete=models.CASCADE)
     payment_date = models.DateTimeField(auto_now_add=True, verbose_name="Дата оплаты")
     paid_course = models.ForeignKey(Course, null=True, blank=True, on_delete=models.CASCADE,

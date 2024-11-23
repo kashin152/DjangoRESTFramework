@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 
 from courses.models import Course, Lesson
-from users.models import Payments
+from users.models import Payment
 from django.utils import timezone
 
 
@@ -32,5 +32,5 @@ class Command(BaseCommand):
         ]
 
         for item in sample_data:
-            Payments.objects.create(**item)
+            Payment.objects.create(**item)
         self.stdout.write(self.style.SUCCESS("Данные успешно загружены!"))
