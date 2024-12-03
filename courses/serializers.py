@@ -1,6 +1,7 @@
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 
-from courses.models import Course, Lesson
+from courses.models import Course, Lesson, Subscription
+from courses.validators import LinkToVideoValidator
 
 
 class CourseSerializer(ModelSerializer):
@@ -8,11 +9,17 @@ class CourseSerializer(ModelSerializer):
         model = Course
         fields = "__all__"
 
+    def get_is_subscribed(self, obj):
+        user = self.context["request"].user
+        return Subscription.objects.filter(user=user, course=obj).exists()
+
 
 class LessonSerializer(ModelSerializer):
     class Meta:
         model = Lesson
-        fields = "__all__"
+        fields = ["title", "description", "preview", "link_to_video", "course", "owner"]
+        extra_kwargs = {"link_to_video": {"required": False}}
+        validators = [LinkToVideoValidator(field="link_to_video")]
 
 
 class CourseCountSerializer(ModelSerializer):
@@ -25,4 +32,4 @@ class CourseCountSerializer(ModelSerializer):
 
     class Meta:
         model = Course
-        fields = ('id', "title", "description", "lessons", "lesson_count")
+        fields = ("id", "title", "description", "lessons", "lesson_count")

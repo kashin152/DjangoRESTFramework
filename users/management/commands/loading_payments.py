@@ -1,8 +1,8 @@
 from django.core.management.base import BaseCommand
+from django.utils import timezone
 
 from courses.models import Course, Lesson
 from users.models import Payment
-from django.utils import timezone
 
 
 class Command(BaseCommand):
@@ -28,7 +28,7 @@ class Command(BaseCommand):
                 "paid_lesson": lesson1,
                 "payment_amount": 1000.00,
                 "payment_method": "перевод на счет",
-            }
+            },
         ]
 
         for item in sample_data:
