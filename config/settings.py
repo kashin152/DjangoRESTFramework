@@ -21,6 +21,7 @@ load_dotenv(override=True)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY_API = os.getenv("SECRET_KEY_API")
 
 DEBUG = True if os.getenv("DEBUG") == "True" else False
 
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "django_filters",
     "rest_framework_simplejwt",
+    "drf_yasg",
 ]
 
 MIDDLEWARE = [
