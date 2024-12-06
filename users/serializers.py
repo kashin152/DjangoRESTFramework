@@ -1,17 +1,18 @@
 from rest_framework import serializers
+
 from .models import CustomsUser, Payment
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomsUser
-        fields = '__all__'
+        fields = "__all__"
 
 
 class PaymentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Payment
-        fields = '__all__'
+        fields = "__all__"
 
 
 class CustomsUserDetailSerializer(serializers.ModelSerializer):
@@ -19,4 +20,4 @@ class CustomsUserDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomsUser
-        fields = ['id', 'email', 'phone_number', 'avatar', 'city', 'payment_history']
+        fields = ["id", "email", "phone_number", "avatar", "country", "payment_history"]
